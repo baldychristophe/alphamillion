@@ -1,18 +1,19 @@
 <template lang="pug">
   #app
-    img(alt="Vue logo" src="./assets/logo.png")
-    HelloWorld(msg="Welcome to Your Vue.js App")
+    el-row.flex-container(type="flex")
+      el-col(:span="6" v-for="num in 50" :key="num") {{ num }}
+        //- NumberStats(:num="num")
 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NumberStats from './components/NumberStats.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    NumberStats,
+  },
 }
 </script>
 
@@ -24,5 +25,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.flex-container {
+  flex-wrap: wrap;
 }
 </style>
