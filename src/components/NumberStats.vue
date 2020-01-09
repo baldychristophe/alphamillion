@@ -1,5 +1,6 @@
 <template lang="pug">
-  span.num-block {{ num }}
+  el-card.num-block
+    div {{ num }}
 </template>
 
 <script>
@@ -11,5 +12,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
