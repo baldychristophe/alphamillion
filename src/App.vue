@@ -1,11 +1,11 @@
 <template lang="pug">
   el-container#app
-    div Alphamillion
+    h1#logo Alphamillion
     el-menu(mode="horizontal" :default-active="activeIndex")
       el-menu-item(index="1") Ball Stats
       el-menu-item(index="2") Star Stats
     el-main.main
-      el-row(:type="flex" :justify="center" :align="center" :gutter="20")
+      el-row(:gutter="20")
         el-col.num-stat-container(:sm="4" :xs="8" v-for="num in 50" :key="num")
           NumberStats(:num="num")
     el-footer.footer Footer
@@ -34,12 +34,14 @@ body {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
+#logo {
+  font-family: Neogrey, Arial, sans-serif;
+}
 .footer {
   border: solid 1px;
   text-align: center;
