@@ -1,7 +1,7 @@
 <template lang="pug">
   el-card.num-block
     div
-      Ball
+      Ball(:num="num")
 </template>
 
 <script>
