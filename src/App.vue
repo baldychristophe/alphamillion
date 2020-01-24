@@ -1,9 +1,8 @@
 <template lang="pug">
   el-container#app
-    h1#logo Alphamillion
-    el-menu(mode="horizontal" :default-active="activeIndex")
-      el-menu-item(index="1") Ball Stats
-      el-menu-item(index="2") Star Stats
+
+    NavBar
+
     el-main.main
       el-row(:gutter="20")
         el-col.num-stat-container(:sm="4" :xs="8" v-for="num in 50" :key="num")
@@ -13,6 +12,7 @@
 </template>
 
 <script>
+import NavBar from './components/NavBar'
 import NumberStats from './components/NumberStats.vue'
 
 export default {
@@ -24,6 +24,7 @@ export default {
   },
   components: {
     NumberStats,
+    NavBar,
   },
 }
 </script>
@@ -39,16 +40,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-#logo {
-  font-family: Neogrey, Arial, sans-serif;
-}
 .footer {
   border: solid 1px;
   text-align: center;
 }
 
 .main {
-  max-width: 1140px;
+  max-width: $alpha-max-width;
   margin:auto;
 }
 

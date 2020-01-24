@@ -1,5 +1,6 @@
 <template lang="pug">
   figure.circle
+    span.number
 
 </template>
 <script>
@@ -14,10 +15,30 @@ export default {
   display: block;
   background: blue;
   border-radius: 50%;
-  height: 5rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
   margin: 0;
-  background: radial-gradient(circle at 100px 100px, #5cabff, #000);
+  background: radial-gradient(circle at 20px 20px, #5bacfe, #000);
+}
+.number {
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+}
+.number:before {
+  content: "8";
+  // display: block;
+  position: absolute;
+  text-align: center;
+  // height: 80px;
+  // width: 100px;
+  left: 0.5rem;
+  // margin-left: -40px;
+  top: 0.5rem;
+  // margin-top: -40px;
 }
 
 </style>
