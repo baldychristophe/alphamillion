@@ -2,11 +2,12 @@
 .navbar-container
   .logo-bg
     .logo-text-box
-      h1#logo Alpha
+      h1#logo Alphamillions
   .menu-container
     el-menu.menu-content(mode="horizontal" :default-active="activeIndex")
-      el-menu-item.menu-item(index="1") Ball Stats
-      el-menu-item.menu-item(index="2") Star Stats
+      el-menu-item.menu-item(index="1") Last draws
+      el-menu-item.menu-item(index="2") Ball Stats
+      el-menu-item.menu-item(index="3") Star Stats
 
 </template>
 <script>
@@ -16,7 +17,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .logo-bg {
-  background-color: cornflowerblue;
+  background-color: $alpha-primary-color;
 }
 #logo {
   font-family: Neogrey, Arial, sans-serif;

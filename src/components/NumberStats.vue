@@ -1,7 +1,7 @@
 <template lang="pug">
   el-card.num-block
-    div
-      Ball(:num="num")
+    Ball.ball-display(:num="num")
+    div occurence: 10
 </template>
 
 <script>
@@ -18,13 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ball-number {
-  border: 2px solid blue;
-  border-radius: 50%;
-  text-align: center;
-  width: 2rem;
-  height: 2rem;
-  margin: auto;
-  color: blue;
+.ball-display {
+  margin-bottom: 2rem;
 }
 </style>
