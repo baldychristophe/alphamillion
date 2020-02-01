@@ -3,17 +3,14 @@
 
     NavBar
 
-    el-main.main
-      el-row(:gutter="20")
-        el-col.num-stat-container(:sm="4" :xs="8" v-for="num in 50" :key="num")
-          NumberStats(:num="num")
+    router-view
+
     el-footer.footer Footer
 
 </template>
 
 <script>
 import NavBar from './components/NavBar'
-import NumberStats from './components/NumberStats.vue'
 
 export default {
   name: 'app',
@@ -23,7 +20,6 @@ export default {
     }
   },
   components: {
-    NumberStats,
     NavBar,
   },
 }
@@ -43,14 +39,5 @@ body {
 .footer {
   border: solid 1px;
   text-align: center;
-}
-
-.main {
-  max-width: $alpha-max-width;
-  margin:auto;
-}
-
-.num-stat-container {
-  margin-bottom: 20px;
 }
 </style>
