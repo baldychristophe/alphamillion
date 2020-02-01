@@ -4,7 +4,7 @@
     .logo-text-box
       h1#logo Alphamillions
   .menu-container
-    el-menu.menu-content(mode="horizontal" router=true :default-active="activeIndex`")
+    el-menu.menu-content(mode="horizontal" router=true :default-active="activeIndex")
       el-menu-item.menu-item(index="landing" :route="{ name: 'landing' }") Last draws
       el-menu-item.menu-item(index="2") Ball Stats
       el-menu-item.menu-item(index="3") Star Stats
