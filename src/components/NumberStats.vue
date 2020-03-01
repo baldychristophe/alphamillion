@@ -1,5 +1,5 @@
 <template lang="pug">
-  el-card.num-block(shadow="hover")
+  el-card(shadow="hover")
     .clearfix(slot="header")
       Ball(:num="num")
     div.text.item
