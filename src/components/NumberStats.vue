@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Ball from './Ball.vue'
+import Ball from './Ball'
 
 export default {
   props: {

@@ -12,8 +12,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .cercle {
-  width: 2.3rem;
-  height: 2.3rem;
+  width: 2rem;
+  height: 2rem;
   border: 3px solid $alpha-secondary-color;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ export default {
 }
 .numero {
   color: $alpha-secondary-color;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: monospace;
   font-weight: 700;
 }
