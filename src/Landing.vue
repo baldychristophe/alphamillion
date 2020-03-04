@@ -14,7 +14,7 @@ div
       el-col(:span="3" v-for="star in draw.stars" :key="star")
         el-card(shadow="hover")
           .clearfix(slot="header")
-              Ball(:num="star")
+              Star
           div.text.item
             el-row
               el-col(:span="12") date
@@ -22,6 +22,7 @@ div
 </template>
 <script>
 import Ball from './components/Ball'
+import Star from './components/Star'
 
 export default {
   name: 'landing',
@@ -32,6 +33,7 @@ export default {
   },
   components: {
     Ball,
+    Star,
   },
 }
 </script>
