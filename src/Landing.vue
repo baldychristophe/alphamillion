@@ -5,7 +5,7 @@ div
       el-col(:span="3" v-for="ball in draw.balls" :key="ball")
         el-card(shadow="hover")
           .clearfix(slot="header")
-              Ball(:num="ball")
+            Ball(:num="ball")
           div.text.item
             el-row
               el-col(:span="12") date
@@ -14,7 +14,7 @@ div
       el-col(:span="3" v-for="star in draw.stars" :key="star")
         el-card(shadow="hover")
           .clearfix(slot="header")
-              Star
+            Star(:num="star")
           div.text.item
             el-row
               el-col(:span="12") date

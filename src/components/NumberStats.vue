@@ -16,7 +16,7 @@ import Ball from './Ball'
 
 export default {
   props: {
-    num: Number,
+    num: String,
   },
   components: {
     Ball,
