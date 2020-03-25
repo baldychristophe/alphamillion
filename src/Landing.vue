@@ -6,7 +6,7 @@ div
         el-card(shadow="hover")
           .clearfix(slot="header")
             Ball(:num="ball")
-          div.text.item
+          div.text.item.card-body
             el-row
               el-col(:span="12") date
               el-col.text-right(:span="12") {{ draw.date }}
@@ -15,10 +15,9 @@ div
         el-card(shadow="hover")
           .clearfix(slot="header")
             Star(:num="star")
-          div.text.item
+          div.text.item.card-body
             el-row
-              el-col(:span="12") date
-              el-col.text-right(:span="12") {{ draw.date }}
+              | date {{ draw.date }}
 </template>
 <script>
 import Ball from './components/Ball'
@@ -42,5 +41,8 @@ export default {
   content: "";
   clear: both;
   display: table;
+}
+.card-body {
+  font-size: 0.8rem;
 }
 </style>

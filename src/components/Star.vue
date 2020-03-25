@@ -22,9 +22,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.star-drawing {
-  height: 2rem;
-  margin: auto;
+  flex-direction: column;
 }
 </style>
