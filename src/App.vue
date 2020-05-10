@@ -50,8 +50,8 @@ body {
   font-size: 2rem;
 }
 .main {
-  max-width: $alpha-max-width;
-  margin:auto;
+  width: $alpha-max-width;
+  margin: auto;
 }
 .footer {
   border: solid 1px;

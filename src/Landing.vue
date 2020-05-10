@@ -43,6 +43,7 @@ export default {
   display: table;
 }
 .card-body {
-  font-size: 0.8rem;
+  font-size: x-small;
+  padding: 10px;
 }
 </style>
