@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import router from './router'
 
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 // Import common css
 import './styles/index.scss'
 
