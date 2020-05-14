@@ -1,23 +1,14 @@
 <template lang="pug">
 div
-  div(v-for="draw in rawData" :key="draw")
-    el-row(:gutter="20" type="flex" justify="center")
-      el-col(:span="3" v-for="ball in draw.balls" :key="ball")
-        el-card(shadow="hover")
-          .clearfix(slot="header")
-            Ball(:num="ball")
-          div.text.item.card-body
-            el-row
-              el-col(:span="12") date
-              el-col.text-right(:span="12") {{ draw.date }}
+  el-row.mb-4(v-for="draw in rawData" :key="draw")
+    el-card(shadow="hover")
+      .clearfix(slot="header") {{ draw.date }}
+      el-row(type="flex" justify="center")
+        div.mx-3(v-for="ball in draw.balls" :key="ball")
+          Ball(:num="ball")
+        div.mx-3(v-for="star in draw.stars" :key="star")
+          Star(:num="star")
 
-      el-col(:span="3" v-for="star in draw.stars" :key="star")
-        el-card(shadow="hover")
-          .clearfix(slot="header")
-            Star(:num="star")
-          div.text.item.card-body
-            el-row
-              | date {{ draw.date }}
 </template>
 <script>
 import Ball from './components/Ball'

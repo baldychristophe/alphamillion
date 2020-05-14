@@ -12,8 +12,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .cercle {
-  width: 2rem;
-  height: 2rem;
+  width: 38px;
+  height: 38px;
   border: 3px solid $alpha-secondary-color;
   display: flex;
   align-items: center;

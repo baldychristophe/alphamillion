@@ -60,5 +60,6 @@ export default {
   justify-content: center;
   flex-direction: column;
   height: 38px;
+  width: 38px;
 }
 </style>
