@@ -1,27 +1,18 @@
 <template lang="pug">
 div
-  .infinite-list-wrapper(style="overflow:auto")
-    ul(v-infinite-scroll="load")
-      li(v-for="draw in drawDisplayed" :key="draw.date")
-        el-card(shadow="hover")
-          .clearfix(slot="header") {{ draw.date }}
-          el-row(type="flex" justify="center")
-            div.mx-3(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
-              Ball(:num="ball")
-            div.mx-3(v-for="star in draw.stars" :key="'star' + draw.date + star")
-              Star(:num="star")
-
-  //- el-row.mb-4(v-for="draw in rawData" :key="draw")
-  //-   el-card(shadow="hover")
-  //-     .clearfix(slot="header") {{ draw.date }}
-  //-     el-row(type="flex" justify="center")
-  //-       div.mx-3(v-for="ball in draw.balls" :key="ball")
-  //-         Ball(:num="ball")
-  //-       div.mx-3(v-for="star in draw.stars" :key="star")
-  //-         Star(:num="star")
+  div.mb-4(v-for="draw in drawDisplayed" :key="draw.date")
+    el-card(shadow="hover")
+      el-row.mb-3(type="flex" justify="center") {{ formattedDate(draw.date) }}
+      el-row(type="flex" justify="center")
+        div.mx-1(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
+          Ball(:num="ball")
+        div.mx-1(v-for="star in draw.stars" :key="'star' + draw.date + star")
+          Star(:num="star")
 
 </template>
 <script>
+import { DateTime } from 'luxon'
+
 import Ball from './components/Ball'
 import Star from './components/Star'
 
@@ -29,8 +20,8 @@ export default {
   name: 'landing',
   data () {
     return {
-      drawCount: 5,
-      draws: require('./data/test.json'),
+      drawCount: 10,
+      draws: require('./data/draws_with_stats.json'),
     }
   },
   computed: {
@@ -41,6 +32,9 @@ export default {
   methods: {
     load () {
       this.drawCount += 1
+    },
+    formattedDate (date) {
+      return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
     },
   },
   components: {
@@ -61,9 +55,6 @@ export default {
 }
 .overflow-auto {
   overflow: auto;
-  height: 500px;
-}
-.infinite-list-wrapper {
   height: 500px;
 }
 </style>
