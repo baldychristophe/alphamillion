@@ -44,18 +44,13 @@ export default {
     formattedDate (date) {
       return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
     },
-    scroll () {
-      window.onscroll = () => {
-        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.documentElement.offsetHeight - 50
-
-        if (bottomOfWindow) {
-          this.drawCount += 10
-        }
-      }
-    },
   },
   mounted () {
-    this.scroll()
+    window.onscroll = () => {
+      if (document.documentElement.scrollTop + window.innerHeight >= document.documentElement.offsetHeight - 50) {
+        this.drawCount += 10
+      }
+    }
   },
   components: {
     Ball,
