@@ -1,13 +1,21 @@
 <template lang="pug">
-div
-  div.mb-4(v-for="draw in drawDisplayed" :key="draw.date")
-    el-card(shadow="hover")
-      el-row.mb-3(type="flex" justify="center") {{ formattedDate(draw.date) }}
-      el-row(type="flex" justify="center")
-        div.mx-1(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
-          Ball(:num="ball")
-        div.mx-1(v-for="star in draw.stars" :key="'star' + draw.date + star")
-          Star(:num="star")
+.container
+  div(v-for="(draw, index) in drawDisplayed" :key="draw.date")
+    .row.text-small
+      .col.col-2.text-right.flex.align-items-center.align-middle
+        div(v-if="index === 0") Last draw
+        div(v-else) {{ index + 1 }} draws ago
+        div {{ formattedDate(draw.date) }}
+      .col.col-10
+        el-row(type="flex" justify="center")
+          div.mx-1(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
+            Ball(:num="ball")
+          div.mx-1(v-for="star in draw.stars" :key="'star' + draw.date + star")
+            Star(:num="star")
+
+    .row.justify-content-end.my-4
+      .col.col-10
+        hr.w-90
 
 </template>
 <script>
@@ -44,17 +52,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-.card-body {
-  font-size: x-small;
-  padding: 10px;
-}
-.overflow-auto {
-  overflow: auto;
-  height: 500px;
-}
+
 </style>

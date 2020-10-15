@@ -4,7 +4,7 @@ el-container#app
     .logo-text-box
       h1#logo Alphamillions
 
-  el-header
+  el-header.mb-4
     NavBar
 
   el-main.main
