@@ -8,12 +8,27 @@
         div {{ formattedDate(draw.date) }}
       .col.col-10
         el-row(type="flex" justify="center")
-          div.mx-1(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
-            Ball(:num="ball")
-          div.mx-1(v-for="star in draw.stars" :key="'star' + draw.date + star")
-            Star(:num="star")
-        el-row(type="flex" justify="center" v-if="index === visibleRow")
-          div stats
+          table.table
+            thead
+              tr
+                th
+                th(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
+                  Ball(:num="ball")
+                th(v-for="star in draw.stars" :key="'star' + draw.date + star")
+                  Star(:num="star")
+            transition(name="fade" :duration="{ enter: 2500, leave: 800 }")
+              tbody(v-if="index === visibleRow")
+                tr
+                  th Occurrence
+                  th(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'occurrence'") {{ draw.occurrence[ball] }}
+                  th 10
+                  th 11
+
+                tr
+                  th Draws since last
+                  th(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'nb_draws_since_last_pick'") {{ draw.nb_draws_since_last_pick[ball] }}
+                  th 10
+                  th 11
 
     .row.justify-content-end.my-4
       .col.col-10
@@ -65,5 +80,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>
