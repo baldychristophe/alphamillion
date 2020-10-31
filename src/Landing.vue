@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
   div(v-for="(draw, index) in drawDisplayed" :key="draw.date")
-    .row.text-small
+    .row.text-small(@mouseover="rowMouseover(index)")
       .col.col-2.text-right.flex.align-items-center.align-middle
         div(v-if="index === 0") Last draw
         div(v-else) {{ index + 1 }} draws ago
@@ -12,6 +12,8 @@
             Ball(:num="ball")
           div.mx-1(v-for="star in draw.stars" :key="'star' + draw.date + star")
             Star(:num="star")
+        el-row(type="flex" justify="center" v-if="index === visibleRow")
+          div stats
 
     .row.justify-content-end.my-4
       .col.col-10
@@ -30,6 +32,7 @@ export default {
     return {
       drawCount: 10,
       draws: require('./data/draws_with_stats.json'),
+      visibleRow: 0,
     }
   },
   computed: {
@@ -43,6 +46,9 @@ export default {
     },
     formattedDate (date) {
       return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
+    },
+    rowMouseover (rowIndex) {
+      this.visibleRow = rowIndex
     },
   },
   mounted () {
