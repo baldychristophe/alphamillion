@@ -1,8 +1,9 @@
 <template lang="pug">
 el-container#app
   .logo-bg
-    .logo-text-box
-      h1#logo Alphamillions
+    .ml-4.my-2.d-flex.align-items-center
+      h1.logo-display.text-xxlarge Alphamillions
+      h2#slogan.logo-display.ml-5.text-medium Statistics for Euromillions
 
   el-header.mb-4
     NavBar
@@ -39,15 +40,12 @@ body {
 .logo-bg {
   background-color: $alpha-primary-color;
 }
-.logo-text-box {
-  margin: auto;
-}
-#logo {
+.logo-display {
   font-family: Neogrey, Arial, sans-serif;
   color: white;
-  padding: 10px 20px 10px 20px;
-  margin: 0;
-  font-size: 2rem;
+}
+#slogan {
+  margin-bottom: -4px;
 }
 .main {
   width: $alpha-max-width;
