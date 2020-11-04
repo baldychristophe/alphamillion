@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
   div(v-for="(draw, index) in drawDisplayed" :key="draw.date")
-    .row.text-small(@mouseover="rowMouseover(index)")
+    .row.text-small(@click="rowClick(index)")
       .col
         table.table
           thead
@@ -14,7 +14,7 @@
                 Ball(:num="ball")
               th(v-for="star in draw.stars" :key="'star' + draw.date + star")
                 Star(:num="star")
-          tbody(class="collapse" :id="'collapseExample' + index")
+          tbody(class="collapse" :id="'drawStats' + index")
             tr
               th Occurrence
               th.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_occurrence'") {{ draw.ball_occurrence[ball] }}
@@ -31,10 +31,10 @@
 
 </template>
 <script>
-import { DateTime } from 'luxon'
-
 import Ball from './components/Ball'
 import Star from './components/Star'
+
+import { formattedDate } from './utils'
 
 import $ from 'jquery'
 
@@ -44,7 +44,6 @@ export default {
     return {
       drawCount: 10,
       draws: require('./data/draws_with_stats.json'),
-      visibleRow: 0,
     }
   },
   computed: {
@@ -56,12 +55,10 @@ export default {
     load () {
       this.drawCount += 1
     },
-    formattedDate (date) {
-      return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
-    },
-    rowMouseover (rowIndex) {
-      $('#collapseExample' + rowIndex).collapse()
-      this.visibleRow = rowIndex
+    formattedDate,
+    rowClick (rowIndex) {
+      $('#drawStats' + rowIndex).collapse('toggle')
+      console.log('toggle')
     },
   },
   mounted () {
