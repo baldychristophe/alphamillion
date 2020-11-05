@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
   div(v-for="(draw, index) in drawDisplayed" :key="draw.date")
-    div.mt-4.border.rounded(@click="rowClick(index)")
+    div.mt-5.border.rounded.draw-shadow(@click="rowClick(index)")
       table.table.text-small
         thead
           tr
@@ -91,5 +91,8 @@ thead, tbody tr {
   -moz-transition: height .35s ease;
   -o-transition: height .35s ease;
   transition: height .35s ease;
+}
+.draw-shadow {
+  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.05);
 }
 </style>
