@@ -3,7 +3,7 @@ el-container#app
   .logo-bg
     .ml-4.my-2.d-flex.align-items-center
       h1.logo-display.text-xxlarge Alphamillions
-      h2#slogan.logo-display.ml-5.text-medium Statistics for Euromillions
+      h2#slogan.logo-display.ml-5.text-medium Statistics for millionaires
 
   el-header.mb-4
     NavBar
