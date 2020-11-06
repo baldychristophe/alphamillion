@@ -1,5 +1,5 @@
 <template lang="pug">
-.d-flex.align-items-center(@click="rowClick(index)")
+.d-flex.align-items-center.p-2.border.shadow-sm.pointer-hover(@click="rowClick(index)")
   div
     table.table.text-small
       thead
@@ -49,6 +49,11 @@ export default {
     rowClick (rowIndex) {
       $('#drawStats' + rowIndex).collapse('toggle')
     },
+  },
+  mounted () {
+    if (this.$props.index === 0) {
+      $('#drawStats' + this.$props.index).collapse('toggle')
+    }
   },
   components: {
     Ball,

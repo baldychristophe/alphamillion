@@ -1,9 +1,6 @@
 <template lang="pug">
 .container
-  div.row.mb-5.p-2.border.shadow-sm.pointer-hover(
-    v-for="(draw, index) in drawDisplayed"
-    :key="draw.date"
-  )
+  .row.mb-5(v-for="(draw, index) in drawDisplayed" :key="draw.date")
     Draw(:draw="draw" :index="index")
 
 </template>
@@ -41,7 +38,4 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.draw-shadow {
-  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.05);
-}
 </style>
