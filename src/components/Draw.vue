@@ -1,5 +1,5 @@
 <template lang="pug">
-.d-flex.align-items-center.p-2.border.shadow-sm.pointer-hover(@click="rowClick(index)")
+.d-flex.align-items-start.p-3.border.shadow-sm.pointer-hover(@click="rowClick(index)")
   div
     table.table.text-small
       thead
@@ -24,10 +24,16 @@
           th Last drawn
           th.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'") {{ draw.ball_nb_draws_since_last_pick[ball] }} draws ago
           th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'") {{ draw.star_nb_draws_since_last_pick[star] }} draws ago
-  div.pr-2
-    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-    </svg>
+  div.p-2
+    div(v-if="isCollapseOpen")
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    div(v-else)
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+      </svg>
+
 </template>
 
 <script>
@@ -44,15 +50,22 @@ export default {
     draw: Object,
     index: Number,
   },
+  data () {
+    return {
+      isCollapseOpen: false,
+    }
+  },
   methods: {
     formattedDate,
     rowClick (rowIndex) {
       $('#drawStats' + rowIndex).collapse('toggle')
+      this.isCollapseOpen = !this.isCollapseOpen
     },
   },
   mounted () {
     if (this.$props.index === 0) {
       $('#drawStats' + this.$props.index).collapse('toggle')
+      this.isCollapseOpen = !this.isCollapseOpen
     }
   },
   components: {
