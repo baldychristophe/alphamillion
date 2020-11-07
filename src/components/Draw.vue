@@ -22,8 +22,8 @@
 
         tr
           th Last drawn
-          th.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'") {{ draw.ball_nb_draws_since_last_pick[ball] }} draws ago
-          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'") {{ draw.star_nb_draws_since_last_pick[star] }} draws ago
+          th.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'") {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
+          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'") {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
   div.p-2
     div(v-if="isCollapseOpen")
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -60,6 +60,9 @@ export default {
     rowClick (rowIndex) {
       $('#drawStats' + rowIndex).collapse('toggle')
       this.isCollapseOpen = !this.isCollapseOpen
+    },
+    drawAgoText (num) {
+      return `${num} ${num === 1 ? 'draw' : 'draws'} ago`
     },
   },
   mounted () {
