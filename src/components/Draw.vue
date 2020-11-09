@@ -17,13 +17,26 @@
       tbody(class="collapse" :id="'drawStats' + index")
         tr
           th Occurrence
-          th.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_occurrence'") {{ draw.ball_occurrence[ball] }}
-          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_occurrence'") {{ draw.star_occurrence[star] }}
+          td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_occurrence'") {{ draw.ball_occurrence[ball] }}
+          td.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_occurrence'") {{ draw.star_occurrence[star] }}
 
         tr
           th Last drawn
-          th.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'") {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
-          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'") {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
+          td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'") {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
+          td.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'") {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
+
+        tr
+          th Frequency
+            span.text-xsmall.ml-1 (in last 100 draws)
+          td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
+            div
+              table.heatmap
+                tbody
+                  tr.heatmap-row(v-for="row in 10" :key="draw.date + ball + '-row-' + row")
+                    td.heatmap-cell(v-for="col in 10" :key="draw.date + ball + '-col-' + col")
+                      div.border(:class="{ 'heatmap-activate': heatmapActivate(ball, row, col) }")
+
+          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_heat_map'") 0
   div.p-2
     div(v-if="isCollapseOpen")
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -53,6 +66,7 @@ export default {
   data () {
     return {
       isCollapseOpen: false,
+      balls: require('../data/balls_with_stats.json'),
     }
   },
   methods: {
@@ -63,6 +77,9 @@ export default {
     },
     drawAgoText (num) {
       return `${num} ${num === 1 ? 'draw' : 'draws'} ago`
+    },
+    heatmapActivate (ball, row, col) {
+      return this.balls[ball].last_100_heat_map[((row - 1) * 10) + (col - 1)] === 1
     },
   },
   mounted () {
@@ -101,5 +118,33 @@ thead, tbody tr {
   -moz-transition: height .35s ease;
   -o-transition: height .35s ease;
   transition: height .35s ease;
+}
+table td, table th {
+  vertical-align: middle;
+}
+table.heatmap {
+  table-layout:fixed;
+}
+table.heatmap td {
+  overflow:hidden;
+}
+
+tr.heatmap-row {
+  margin-bottom: 1px;
+}
+td.heatmap-cell {
+  padding: 0;
+  margin-bottom: 10px;
+  border-top: 0;
+  width: 7px;
+}
+.heatmap-cell div {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: auto;
+}
+.heatmap-activate {
+  background-color: $alpha-secondary-color;
 }
 </style>
