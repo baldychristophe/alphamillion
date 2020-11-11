@@ -29,12 +29,7 @@
           th Frequency
             span.text-xsmall.ml-1 (in last 100 draws)
           td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
-            div
-              table.heatmap
-                tbody
-                  tr.heatmap-row(v-for="row in 10" :key="draw.date + ball + '-row-' + row")
-                    td.heatmap-cell(v-for="col in 10" :key="draw.date + ball + '-col-' + col")
-                      div.border(:class="{ 'heatmap-activate': heatmapActivate(ball, row, col) }")
+            DrawHeatmap(:heatmapData="balls[ball].last_100_heat_map")
 
           th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_heat_map'") 0
   div.p-2
@@ -52,6 +47,7 @@
 <script>
 import Ball from './Ball'
 import Star from './Star'
+import DrawHeatmap from './DrawHeatmap'
 
 import { formattedDate } from '../utils'
 
@@ -78,9 +74,6 @@ export default {
     drawAgoText (num) {
       return `${num} ${num === 1 ? 'draw' : 'draws'} ago`
     },
-    heatmapActivate (ball, row, col) {
-      return this.balls[ball].last_100_heat_map[((row - 1) * 10) + (col - 1)] === 1
-    },
   },
   mounted () {
     if (this.$props.index === 0) {
@@ -91,6 +84,7 @@ export default {
   components: {
     Ball,
     Star,
+    DrawHeatmap,
   },
 }
 </script>
@@ -121,30 +115,5 @@ thead, tbody tr {
 }
 table td, table th {
   vertical-align: middle;
-}
-table.heatmap {
-  table-layout:fixed;
-}
-table.heatmap td {
-  overflow:hidden;
-}
-
-tr.heatmap-row {
-  margin-bottom: 1px;
-}
-td.heatmap-cell {
-  padding: 0;
-  margin-bottom: 10px;
-  border-top: 0;
-  width: 7px;
-}
-.heatmap-cell div {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin: auto;
-}
-.heatmap-activate {
-  background-color: $alpha-secondary-color;
 }
 </style>
