@@ -29,9 +29,10 @@
           th Frequency
             span.text-xsmall.ml-1 (in last 100 draws)
           td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
-            DrawHeatmap(:heatmapData="balls[ball].last_100_heat_map")
+            DrawHeatmap(:heatmapData="balls[ball].last_100_heat_map" :isStar="false")
 
-          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_heat_map'") 0
+          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_heat_map'")
+            DrawHeatmap(:heatmapData="stars[star].last_100_heat_map" :isStar="true")
   div.p-2
     div(v-if="isCollapseOpen")
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -63,6 +64,7 @@ export default {
     return {
       isCollapseOpen: false,
       balls: require('../data/balls_with_stats.json'),
+      stars: require('../data/stars_with_stats.json'),
     }
   },
   methods: {

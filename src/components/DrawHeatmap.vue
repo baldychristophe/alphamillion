@@ -4,13 +4,14 @@ div.d-flex.justify-content-center
     tbody
       tr.heatmap-row(v-for="row in 10" :key="'heatmap-row-' + row")
         td.heatmap-cell(v-for="col in 10" :key="'heatmap-col-' + col")
-          div.border(:class="{ 'heatmap-activate': heatmapData[((row - 1) * 10) + (col -1)] === 1 }")
+          div.border(:class="{'heatmap-activate-ball': heatmapData[((row - 1) * 10) + (col -1)] === 1 && !isStar, 'heatmap-activate-star': heatmapData[((row - 1) * 10) + (col -1)] === 1 && isStar }")
 </template>
 <script>
 export default {
   name: 'DrawHeatmap',
   props: {
     heatmapData: Array,
+    isStar: Boolean,
   },
 }
 </script>
@@ -35,7 +36,10 @@ td.heatmap-cell {
   border-radius: 50%;
   margin: auto;
 }
-.heatmap-activate {
+.heatmap-activate-ball {
   background-color: $alpha-secondary-color;
+}
+.heatmap-activate-star {
+  background-color: rgba($color: #ffcc00, $alpha: 1.0);
 }
 </style>
