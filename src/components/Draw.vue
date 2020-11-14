@@ -26,7 +26,7 @@
             div.d-flex.justify-content-center
               div {{ draw.ball_occurrence[ball] }}
               div.align-middle.ml-1
-                span.dot(:class="cellColorGradient(draw.ball_occurrence[ball], drawsMetadata.expected_ball_occurrence)")
+                span.dot(:class="backgroundColorGradientOccurrence(draw.ball_occurrence[ball], drawsMetadata.expected_ball_occurrence)")
 
           td.text-center(
             v-for="star in draw.stars"
@@ -35,10 +35,12 @@
             div.d-flex.justify-content-center
               div {{ draw.star_occurrence[star] }}
               div.align-middle.ml-1
-                span.dot(:class="cellColorGradient(draw.star_occurrence[star], drawsMetadata.expected_star_occurrence)")
+                span.dot(:class="backgroundColorGradientOccurrence(draw.star_occurrence[star], drawsMetadata.expected_star_occurrence)")
 
         tr
-          th Last drawn
+          th
+            span Last drawn
+            span.ml-1(v-tooltip="'This is an information tooltip'") ⓘ
           td(
             v-for="ball in draw.balls"
             :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'"
@@ -46,7 +48,7 @@
             div.d-flex.justify-content-center
               div {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
               div.align-middle.ml-1
-                span.dot(:class="cellColorGradient(draw.ball_nb_draws_since_last_pick[ball], drawsMetadata.expected_ball_draw_gap)")
+                span.dot(:class="backgroundColorGradientDrawGap(draw.ball_nb_draws_since_last_pick[ball], drawsMetadata.expected_ball_draw_gap)")
 
           td(
             v-for="star in draw.stars"
@@ -55,7 +57,7 @@
             div.d-flex.justify-content-center
               div {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
               div.align-middle.ml-1
-                span.dot(:class="cellColorGradient(draw.star_nb_draws_since_last_pick[star], drawsMetadata.expected_star_draw_gap)")
+                span.dot(:class="backgroundColorGradientDrawGap(draw.star_nb_draws_since_last_pick[star], drawsMetadata.expected_star_draw_gap)")
 
         tr
           th Frequency
@@ -108,7 +110,7 @@ export default {
     drawAgoText (num) {
       return `${num} ${num === 1 ? 'draw' : 'draws'} ago`
     },
-    cellColorGradient (num, expected) {
+    backgroundColorGradientOccurrence (num, expected) {
       const diff = num / expected
       if (diff === 1) {
         return ''
@@ -127,6 +129,29 @@ export default {
       } else if (diff < 0.90 && diff >= 0.80) {
         return 'bg-red-0'
       } else if (diff < 0.80) {
+        return 'bg-red-0'
+      }
+      return ''
+    },
+    backgroundColorGradientDrawGap (num, expected) {
+      const diff = num - expected
+      if (diff === 0) {
+        return ''
+      } else if (diff > 0 && diff <= 5) {
+        return 'bg-green-3'
+      } else if (diff > 5 && diff <= 10) {
+        return 'bg-green-2'
+      } else if (diff > 10 && diff <= 20) {
+        return 'bg-green-1'
+      } else if (diff > 20) {
+        return 'bg-green-0'
+      } else if (diff < 0 && diff >= -2) {
+        return 'bg-red-3'
+      } else if (diff < -2 && diff >= -5) {
+        return 'bg-red-2'
+      } else if (diff < -5 && diff >= -8) {
+        return 'bg-red-1'
+      } else if (diff < -8) {
         return 'bg-red-0'
       }
       return ''
