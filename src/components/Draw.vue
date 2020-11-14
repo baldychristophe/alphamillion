@@ -16,7 +16,9 @@
               Star(:num="star")
       tbody(class="collapse" :id="'drawStats' + index")
         tr
-          th Occurrence
+          th
+            span Occurrence
+            span.ml-1(v-tooltip="'This is an information tooltip'") ⓘ
           td.text-center(
             v-for="ball in draw.balls"
             :key="'ball' + draw.date + ball + 'ball_occurrence'"
@@ -108,7 +110,6 @@ export default {
     },
     cellColorGradient (num, expected) {
       const diff = num / expected
-      console.log(diff)
       if (diff === 1) {
         return ''
       } else if (diff > 1 && diff <= 1.05) {
