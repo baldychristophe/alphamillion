@@ -17,13 +17,43 @@
       tbody(class="collapse" :id="'drawStats' + index")
         tr
           th Occurrence
-          td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_occurrence'") {{ draw.ball_occurrence[ball] }}
-          td.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_occurrence'") {{ draw.star_occurrence[star] }}
+          td.text-center(
+            v-for="ball in draw.balls"
+            :key="'ball' + draw.date + ball + 'ball_occurrence'"
+          )
+            div.d-flex.justify-content-center
+              div {{ draw.ball_occurrence[ball] }}
+              div.align-middle.ml-1
+                span.dot(:class="cellColorGradient(draw.ball_occurrence[ball], drawsMetadata.expected_ball_occurrence)")
+
+          td.text-center(
+            v-for="star in draw.stars"
+            :key="'star' + draw.date + star + 'star_occurrence'"
+          )
+            div.d-flex.justify-content-center
+              div {{ draw.star_occurrence[star] }}
+              div.align-middle.ml-1
+                span.dot(:class="cellColorGradient(draw.star_occurrence[star], drawsMetadata.expected_star_occurrence)")
 
         tr
           th Last drawn
-          td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'") {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
-          td.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'") {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
+          td(
+            v-for="ball in draw.balls"
+            :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'"
+          )
+            div.d-flex.justify-content-center
+              div {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
+              div.align-middle.ml-1
+                span.dot(:class="cellColorGradient(draw.ball_nb_draws_since_last_pick[ball], drawsMetadata.expected_ball_draw_gap)")
+
+          td(
+            v-for="star in draw.stars"
+            :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'"
+          )
+            div.d-flex.justify-content-center
+              div {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
+              div.align-middle.ml-1
+                span.dot(:class="cellColorGradient(draw.star_nb_draws_since_last_pick[star], drawsMetadata.expected_star_draw_gap)")
 
         tr
           th Frequency
@@ -64,6 +94,7 @@ export default {
       isCollapseOpen: false,
       balls: require('../data/balls_with_stats.json'),
       stars: require('../data/stars_with_stats.json'),
+      drawsMetadata: require('../data/draws_metadata.json'),
     }
   },
   methods: {
@@ -74,6 +105,30 @@ export default {
     },
     drawAgoText (num) {
       return `${num} ${num === 1 ? 'draw' : 'draws'} ago`
+    },
+    cellColorGradient (num, expected) {
+      const diff = num / expected
+      console.log(diff)
+      if (diff === 1) {
+        return ''
+      } else if (diff > 1 && diff <= 1.05) {
+        return 'bg-green-3'
+      } else if (diff > 1.05 && diff <= 1.10) {
+        return 'bg-green-2'
+      } else if (diff > 1.10 && diff <= 1.20) {
+        return 'bg-green-1'
+      } else if (diff > 1.20) {
+        return 'bg-green-0'
+      } else if (diff < 1 && diff >= 0.95) {
+        return 'bg-red-3'
+      } else if (diff < 0.95 && diff >= 0.90) {
+        return 'bg-red-0'
+      } else if (diff < 0.90 && diff >= 0.80) {
+        return 'bg-red-0'
+      } else if (diff < 0.80) {
+        return 'bg-red-0'
+      }
+      return ''
     },
   },
   mounted () {
@@ -118,5 +173,11 @@ thead, tbody tr {
 }
 table td, table th {
   vertical-align: middle;
+}
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
 }
 </style>
