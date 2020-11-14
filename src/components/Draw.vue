@@ -35,13 +35,9 @@
             DrawHeatmap(:heatmapData="stars[star].last_100_heat_map" :isStar="true")
   div.p-2
     div(v-if="isCollapseOpen")
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-      </svg>
+      chevronDown
     div(v-else)
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-      </svg>
+      chevronUp
 
 </template>
 
@@ -53,6 +49,9 @@ import DrawHeatmap from './DrawHeatmap'
 import { formattedDate } from '../utils'
 
 import $ from 'jquery'
+
+import chevronDown from '@/assets/icons/chevronDown.svg'
+import chevronUp from '@/assets/icons/chevronUp.svg'
 
 export default {
   name: 'draw',
@@ -87,6 +86,8 @@ export default {
     Ball,
     Star,
     DrawHeatmap,
+    chevronDown,
+    chevronUp,
   },
 }
 </script>
