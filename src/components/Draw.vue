@@ -60,8 +60,10 @@
                 span.dot(:class="backgroundColorGradientDrawGap(draw.star_nb_draws_since_last_pick[star], drawsMetadata.expected_star_draw_gap)")
 
         tr
-          th Frequency
+          th
+            spen Frequency
             span.text-xsmall.ml-1 (in last 100 draws)
+            span.ml-1(v-tooltip.html="'<p>This is a paragraph</p><p>This is an information tooltip</p>'") ⓘ
           td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
             DrawHeatmap(:heatmapData="balls[ball].last_100_heat_map" :isStar="false")
 

@@ -37,6 +37,7 @@ Vue.directive('tooltip', (el, binding) => {
     placement: 'auto',
     trigger: 'hover',
     html: binding.modifiers.html || false,
+    delay: binding.modifiers.delayed ? { show: 1000, hide: 100 } : 0,
   })
 })
 
