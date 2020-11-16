@@ -26,7 +26,7 @@
             div.d-flex.justify-content-center
               div {{ draw.ball_occurrence[ball] }}
               div.align-middle.ml-1
-                span.dot(:class="backgroundColorGradientOccurrence(draw.ball_occurrence[ball], drawsMetadata.expected_ball_occurrence)")
+                span.dot(:class="backgroundColorGradientOccurrence(draw.ball_occurrence[ball], draw.expected_ball_occurrence)")
 
           td.text-center(
             v-for="star in draw.stars"
@@ -35,7 +35,7 @@
             div.d-flex.justify-content-center
               div {{ draw.star_occurrence[star] }}
               div.align-middle.ml-1
-                span.dot(:class="backgroundColorGradientOccurrence(draw.star_occurrence[star], drawsMetadata.expected_star_occurrence)")
+                span.dot(:class="backgroundColorGradientOccurrence(draw.star_occurrence[star], draw.expected_star_occurrence)")
 
         tr
           th
@@ -61,7 +61,7 @@
 
         tr
           th
-            spen Frequency
+            span Frequency
             span.text-xsmall.ml-1 (in last 100 draws)
             span.ml-1(v-tooltip.html="'<p>This is a paragraph</p><p>This is an information tooltip</p>'") ⓘ
           td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
