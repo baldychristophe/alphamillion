@@ -12,7 +12,7 @@
       div {{ drawsMetadata.number_of_draws }}
 
   .row.mb-3
-    .col.text-xsmall *In September 2016 the Lucky Star ball pool was increased from 11 to 12
+    .col.text-xsmall.text-secondary *In September 2016 the Lucky Star ball pool was increased from 11 to 12
   .row.mb-5(v-for="(draw, index) in drawDisplayed" :key="draw.date")
     Draw(:draw="draw" :index="index")
 

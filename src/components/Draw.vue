@@ -7,7 +7,7 @@
           th
             div(v-if="index === 0") Last draw
             div(v-else) {{ index + 1 }} draws ago
-            div {{ formattedDate(draw.date) }}
+            div.text-xsmall.text-secondary {{ formattedDate(draw.date) }}
           th(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
             .d-flex.justify-content-center
               Ball(:num="ball")
