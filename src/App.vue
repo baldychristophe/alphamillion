@@ -48,7 +48,7 @@ body {
   margin-bottom: -4px;
 }
 .main {
-  width: $alpha-max-width;
+  max-width: $alpha-max-width;
   margin: auto;
 }
 .footer {

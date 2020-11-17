@@ -14,7 +14,7 @@ export default {
 .cercle {
   width: 38px;
   height: 38px;
-  border: 3px solid $alpha-secondary-color;
+  border: 2px solid $alpha-secondary-color;
   display: flex;
   align-items: center;
   justify-content: center;
