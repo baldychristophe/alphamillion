@@ -1,0 +1,5 @@
+$tooltip-bg: rgb(102, 102, 102);
+$tooltip-border-radius: 0%;
+
+// Import bootstrap after the variable override
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
