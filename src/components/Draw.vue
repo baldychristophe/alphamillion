@@ -79,9 +79,10 @@
 
         tr
           th
-            span Frequency
-            span.text-xsmall.ml-1 (in last 100 draws)
-            span.ml-1(:id="'frequency-tooltip-' + index") ⓘ
+            div
+              | Frequency
+              span.ml-1(:id="'frequency-tooltip-' + index") ⓘ
+            div.text-xsmall.text-secondary (in last 100 draws)
             <b-tooltip :target="'frequency-tooltip-' + index" triggers="hover">
               <div class="text-justify">
                 <p>Heatmap of the last 100 draws where filled dots represent a draw when the ball or star was drawn.</p>
