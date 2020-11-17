@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import $ from 'jquery'
-
 import App from './App.vue'
 import router from './router'
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
+// Bootstrap vue
+import { BootstrapVue } from 'bootstrap-vue'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // Import common css
 import './styles/index.scss'
@@ -22,24 +24,7 @@ Vue.use(VueRouter)
 // Implement on-demand component import
 // see https://element.eleme.io/#/en-US/component/quickstart#on-demand
 Vue.use(ElementUI)
-
-// Add v-tooltip directive to add a tooltip to elements
-Vue.directive('tooltip', (el, binding) => {
-  $(el).tooltip({
-    title: binding.value,
-    container: el,
-    template: `
-      <div class="tooltip ${binding.arg}" role="tooltip">
-        <div class="arrow"></div>
-        <div class="tooltip-inner"></div>
-      </div>
-    `,
-    placement: 'auto',
-    trigger: 'hover',
-    html: binding.modifiers.html || false,
-    delay: binding.modifiers.delayed ? { show: 1000, hide: 100 } : 0,
-  })
-})
+Vue.use(BootstrapVue)
 
 new Vue({
   router,
