@@ -20,13 +20,11 @@
             span Occurrence
             span.ml-1(:id="'occurrence-tooltip-' + index") ⓘ
             <b-tooltip :target="'occurrence-tooltip-' + index" triggers="hover">
-              <div class="text-justify">
-                <p>The number of time each balls and stars was drawn in the last {{ drawsMetadata.number_of_draws }} draws.</p>
-                <p class="text-small">
+              .text-justify.text-small
+                p The number of time each balls and stars was drawn in the last {{ drawsMetadata.number_of_draws }} draws
+                p
                   | Balls have an expected value of {{ draw.expected_ball_occurrence }} occurrences and
                   | stars have an expected value of {{ draw.expected_star_occurrence }} occurrences.
-                </p>
-              </div>
             </b-tooltip>
           td.text-center(
             v-for="ball in draw.balls"
@@ -51,13 +49,11 @@
             span Last drawn
             span.ml-1(:id="'last-draws-tooltip-' + index") ⓘ
             <b-tooltip :target="'last-draws-tooltip-' + index" triggers="hover">
-              <div class="text-justify">
-                <p>The number of draw since the ball or star was last drawn.</p>
-                <p class="text-small">
+              .text-justify.text-small
+                p The number of draw since the ball or star was last drawn.
+                p
                   | On average, balls should be drawn every {{ drawsMetadata.expected_ball_draw_gap }}
                   | and stars should be drawn every {{ drawsMetadata.expected_star_draw_gap }}.
-                </p>
-              </div>
             </b-tooltip>
           td(
             v-for="ball in draw.balls"
@@ -84,12 +80,10 @@
               span.ml-1(:id="'frequency-tooltip-' + index") ⓘ
             div.text-xsmall.text-secondary (in last 100 draws)
             <b-tooltip :target="'frequency-tooltip-' + index" triggers="hover">
-              <div class="text-justify">
-                <p>Heatmap of the last 100 draws where filled dots represent a draw when the ball or star was drawn.</p>
-                <p class="text-small">
+              .text-justify.text-small
+                p Heatmap of the last 100 draws where filled dots represent a draw when the ball or star was drawn.
+                p
                   | The draws are ordered from left to right and from top to bottom, each line representing 10 draws.
-                </p>
-              </div>
             </b-tooltip>
           td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
             DrawHeatmap(:heatmapData="balls[ball].last_100_heat_map" :isStar="false")
