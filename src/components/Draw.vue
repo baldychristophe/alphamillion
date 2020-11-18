@@ -1,5 +1,5 @@
 <template lang="pug">
-.d-flex.align-items-start.p-3.border.shadow-sm.pointer-hover(@click="rowClick(index)")
+.d-flex.align-items-start.p-3.border.pointer-hover.shadow-on-hover(@click="rowClick(index)")
   div
     table.table.text-small
       thead
