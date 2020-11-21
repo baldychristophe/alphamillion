@@ -103,7 +103,7 @@ import Ball from './Ball'
 import Star from './Star'
 import DrawHeatmap from './DrawHeatmap'
 
-import { formattedDate } from '../utils'
+import { formattedDate, drawAgoText } from '../utils'
 
 import $ from 'jquery'
 
@@ -126,12 +126,10 @@ export default {
   },
   methods: {
     formattedDate,
+    drawAgoText,
     rowClick (rowIndex) {
       $('#drawStats' + rowIndex).collapse('toggle')
       this.isCollapseOpen = !this.isCollapseOpen
-    },
-    drawAgoText (num) {
-      return `${num} ${num === 1 ? 'draw' : 'draws'} ago`
     },
     backgroundColorGradientOccurrence (num, expected) {
       const diff = num / expected
