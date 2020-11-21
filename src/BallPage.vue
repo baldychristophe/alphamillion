@@ -1,21 +1,23 @@
 <template lang="pug">
-div
-  el-row(:gutter="20")
-    el-col.num-stat-container(:sm="6" :xs="8" v-for="num in 50" :key="num")
-      NumberStats(:num="num")
+.container
+  PageHeader
+
+  .row
+    .col-12.col-md-4.mb-4(v-for="num in 50" :key="num")
+      NumberStats(:num="String(num)")
+
 </template>
 <script>
 import NumberStats from './components/NumberStats'
+import PageHeader from './components/PageHeader'
 
 export default {
   name: 'balls',
   components: {
     NumberStats,
+    PageHeader,
   },
 }
 </script>
 <style lang="scss" scoped>
-.num-stat-container {
-  margin-bottom: 20px;
-}
 </style>

@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router'
 
-import BallStats from './BallStats'
+import BallPage from './BallPage'
 import Landing from './Landing'
 import StarStats from './StarStats'
 
@@ -15,7 +15,7 @@ const router = new VueRouter({
     {
       path: '/balls',
       name: 'balls',
-      component: BallStats,
+      component: BallPage,
     },
     {
       path: '/stars',
