@@ -52,8 +52,8 @@
               .text-justify.text-small
                 p The number of draw since the ball or star was last drawn.
                 p
-                  | On average, balls should be drawn every {{ drawsMetadata.expected_ball_draw_gap }}
-                  | and stars should be drawn every {{ drawsMetadata.expected_star_draw_gap }}.
+                  | On average, balls should be drawn every {{ drawsMetadata.expected_ball_draw_gap }} draw
+                  | and stars should be drawn every {{ drawsMetadata.expected_star_draw_gap }} draw.
             </b-tooltip>
           td(
             v-for="ball in draw.balls"
