@@ -42,7 +42,7 @@
           div.text-xsmall.text-secondary (in last 100 draws)
           <b-tooltip :target="'frequency-tooltip-' + num" triggers="hover">
             .text-justify.text-small
-              p Heatmap of the last 100 draws where filled dots represent a draw when the ball or star was drawn.
+              p Heatmap of the last 100 draws where filled dots represent a draw when the ball was drawn.
               p
                 | The draws are ordered from left to right and from top to bottom, each line representing 10 draws.
           </b-tooltip>
