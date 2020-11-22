@@ -2,7 +2,7 @@ import VueRouter from 'vue-router'
 
 import BallPage from './BallPage'
 import Landing from './Landing'
-import StarStats from './StarStats'
+import StarPage from './StarPage'
 
 const router = new VueRouter({
   mode: 'history',
@@ -20,7 +20,7 @@ const router = new VueRouter({
     {
       path: '/stars',
       name: 'stars',
-      component: StarStats,
+      component: StarPage,
     },
   ],
 })
