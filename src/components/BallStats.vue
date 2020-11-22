@@ -1,6 +1,6 @@
 <template lang="pug">
   div.p-3.border.pointer-hover.shadow-on-hover
-    div.d-flex.mb-3
+    div.d-flex.justify-content-center.mb-3
       Ball(:num="num")
     div.text-small.container
       div.row.p-2.align-items-center
@@ -11,7 +11,7 @@
             .text-justify.text-small
               p The number of time the ball was drawn in the last 433 draws.
               p
-                | Balls have an expected value of 10 occurrences.
+                | Balls have an expected value of 43 occurrences.
           </b-tooltip>
         div.col.py-1
           div.d-flex.justify-content-start
@@ -25,7 +25,7 @@
           span.ml-1(:id="'last-draws-tooltip-' + num") ⓘ
           <b-tooltip :target="'last-draws-tooltip-' + num" triggers="hover">
             .text-justify.text-small
-              p The number of draw since the ball or star was last drawn.
+              p The number of draw since the ball was last drawn.
               p On average, balls should be drawn every 10 draws.
           </b-tooltip>
         div.col.py-1
