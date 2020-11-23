@@ -11,7 +11,8 @@ el-container#app
   el-main.main
     router-view
 
-  el-footer.footer Footer
+  el-footer.footer.text-small.text-secondary.d-flex.justify-content-center.align-items-center
+    div © Copyright Alphamillion, 2020
 
 </template>
 
@@ -52,7 +53,6 @@ body {
   margin: auto;
 }
 .footer {
-  border: solid 1px;
-  text-align: center;
+  background-color:rgba(242, 242, 242, 0.4);
 }
 </style>
