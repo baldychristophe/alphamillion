@@ -4,8 +4,8 @@ el-container#app
     .ml-4.my-2.d-flex.align-items-center
       h1.logo-display.text-xxlarge Alphamillions
       h2#slogan.logo-display.ml-5.text-medium Statistics for millionaires
+  el-header.mb-2
 
-  el-header.mb-4
     NavBar
 
   el-main.main

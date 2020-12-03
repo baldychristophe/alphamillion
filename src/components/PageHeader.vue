@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  .row.mb-5
+  .row.mb-3
     .col.d-flex.flex-column.text-center
       div.text-small First draw*
       div {{ formattedDate(drawsMetadata.first_draw) }}
