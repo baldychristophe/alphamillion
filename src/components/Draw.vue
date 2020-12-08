@@ -18,7 +18,7 @@
         tr
           th
             span Occurrence
-            span.ml-1(:id="'occurrence-tooltip-' + index") ⓘ
+            span.ml-1.text-xsmall(:id="'occurrence-tooltip-' + index") ⓘ
             <b-tooltip :target="'occurrence-tooltip-' + index" triggers="hover">
               .text-justify.text-small
                 p The number of time each balls and stars was drawn in the last {{ drawsMetadata.number_of_draws }} draws
@@ -47,7 +47,7 @@
         tr
           th
             span Last drawn
-            span.ml-1(:id="'last-draws-tooltip-' + index") ⓘ
+            span.ml-1.text-xsmall(:id="'last-draws-tooltip-' + index") ⓘ
             <b-tooltip :target="'last-draws-tooltip-' + index" triggers="hover">
               .text-justify.text-small
                 p The number of draw since the ball or star was last drawn.
@@ -77,7 +77,7 @@
           th
             div
               | Frequency
-              span.ml-1(:id="'frequency-tooltip-' + index") ⓘ
+              span.ml-1.text-xsmall(:id="'frequency-tooltip-' + index") ⓘ
             div.text-xsmall.text-secondary (in last 100 draws)
             <b-tooltip :target="'frequency-tooltip-' + index" triggers="hover">
               .text-justify.text-small

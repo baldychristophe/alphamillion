@@ -6,7 +6,7 @@
       div.row.p-2.align-items-center
         div.col.py-1.text-right.font-weight-bold
           span Occurrence
-          span.ml-1(:id="'occurrence-tooltip-' + num") ⓘ
+          span.ml-1.text-xsmall(:id="'occurrence-tooltip-' + num") ⓘ
           <b-tooltip :target="'occurrence-tooltip-' + num" triggers="hover">
             .text-justify.text-small
               p The number of time the ball was drawn in the last 433 draws.
@@ -22,7 +22,7 @@
       div.row.p-2.border-top.align-items-center
         div.col.py-1.text-right.font-weight-bold
           span Last drawn
-          span.ml-1(:id="'last-draws-tooltip-' + num") ⓘ
+          span.ml-1.text-xsmall(:id="'last-draws-tooltip-' + num") ⓘ
           <b-tooltip :target="'last-draws-tooltip-' + num" triggers="hover">
             .text-justify.text-small
               p The number of draw since the ball was last drawn.
@@ -38,7 +38,7 @@
         div.col.py-1.text-right.font-weight-bold
           div
             | Frequency
-            span.ml-1(:id="'frequency-tooltip-' + num") ⓘ
+            span.ml-1.text-xsmall(:id="'frequency-tooltip-' + num") ⓘ
           div.text-xsmall.text-secondary (in last 100 draws)
           <b-tooltip :target="'frequency-tooltip-' + num" triggers="hover">
             .text-justify.text-small
