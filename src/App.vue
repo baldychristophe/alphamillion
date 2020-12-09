@@ -12,7 +12,7 @@ el-container#app
     router-view
 
   el-footer.footer.text-small.text-secondary.d-flex.justify-content-center.align-items-center
-    div © Copyright Alphamillion, 2020
+    div © Copyright Alphamillions, 2020
 
 </template>
 

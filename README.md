@@ -1,4 +1,4 @@
-# alphamillion
+# alphamillions
 
 ## Project setup
 
