@@ -8,7 +8,7 @@ el-container#app
 
     NavBar
 
-  el-main.main
+  el-main
     router-view
 
   el-footer.footer.text-small.text-secondary.d-flex.justify-content-center.align-items-center
@@ -47,10 +47,6 @@ body {
 }
 #slogan {
   margin-bottom: -4px;
-}
-.main {
-  max-width: $alpha-max-width;
-  margin: auto;
 }
 .footer {
   background-color:rgba(242, 242, 242, 0.4);

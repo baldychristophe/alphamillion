@@ -3,7 +3,7 @@
   PageHeader
 
   .row
-    .col-12.col-md-4.mb-4(v-for="num in 12" :key="num")
+    .col-12.col-lg-4.col-md-6.mb-4(v-for="num in 12" :key="num")
       StarStats(:num="String(num)")
 
 </template>
