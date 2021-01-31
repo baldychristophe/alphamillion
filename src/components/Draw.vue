@@ -1,100 +1,112 @@
 <template lang="pug">
-.d-flex.align-items-start.p-3.border.pointer-hover.shadow-on-hover(@click="rowClick(index)")
-  div
-    table.table.text-small
-      thead
-        tr
-          th
-            div(v-if="index === 0") Last draw
-            div(v-else) {{ index + 1 }} draws ago
-            div.text-xsmall.text-secondary {{ formattedDate(draw.date) }}
-          th(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
-            .d-flex.justify-content-center
-              Ball(:num="ball")
-          th(v-for="star in draw.stars" :key="'star' + draw.date + star")
-            .d-flex.justify-content-center
-              Star(:num="star")
-      tbody(class="collapse" :id="'drawStats' + index")
-        tr
-          th
-            span Occurrence
-            span.ml-1.text-xsmall(:id="'occurrence-tooltip-' + index") ⓘ
-            <b-tooltip :target="'occurrence-tooltip-' + index" triggers="hover">
-              .text-justify.text-small
-                p The number of time each balls and stars was drawn in the last {{ drawsMetadata.number_of_draws }} draws
-                p
-                  | Balls have an expected value of {{ draw.expected_ball_occurrence }} occurrences and
-                  | stars have an expected value of {{ draw.expected_star_occurrence }} occurrences.
-            </b-tooltip>
-          td.text-center(
-            v-for="ball in draw.balls"
-            :key="'ball' + draw.date + ball + 'ball_occurrence'"
-          )
-            div.d-flex.justify-content-center
-              div {{ draw.ball_occurrence[ball] }}
-              div.align-middle.ml-1
-                span.dot(:class="backgroundColorGradientOccurrence(draw.ball_occurrence[ball], draw.expected_ball_occurrence)")
+.border.pointer-hover.shadow-on-hover(@click="rowClick(index)")
+  .d-flex.align-items-start
+    div.draw-lg.p-3
+      table.table.text-small
+        thead
+          tr
+            th
+              div(v-if="index === 0") Last draw
+              div(v-else) {{ index + 1 }} draws ago
+              div.text-xsmall.text-secondary {{ formattedDate(draw.date) }}
+            th(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
+              .d-flex.justify-content-center
+                Ball(:num="ball")
+            th(v-for="star in draw.stars" :key="'star' + draw.date + star")
+              .d-flex.justify-content-center
+                Star(:num="star")
+        tbody(class="collapse" :id="'drawStats' + index")
+          tr
+            th
+              span Occurrence
+              span.ml-1.text-xsmall(:id="'occurrence-tooltip-' + index") ⓘ
+              <b-tooltip :target="'occurrence-tooltip-' + index" triggers="hover">
+                .text-justify.text-small
+                  p The number of time each balls and stars was drawn in the last {{ drawsMetadata.number_of_draws }} draws
+                  p
+                    | Balls have an expected value of {{ draw.expected_ball_occurrence }} occurrences and
+                    | stars have an expected value of {{ draw.expected_star_occurrence }} occurrences.
+              </b-tooltip>
+            td.text-center(
+              v-for="ball in draw.balls"
+              :key="'ball' + draw.date + ball + 'ball_occurrence'"
+            )
+              div.d-flex.justify-content-center
+                div {{ draw.ball_occurrence[ball] }}
+                div.align-middle.ml-1
+                  span.dot(:class="backgroundColorGradientOccurrence(draw.ball_occurrence[ball], draw.expected_ball_occurrence)")
 
-          td.text-center(
-            v-for="star in draw.stars"
-            :key="'star' + draw.date + star + 'star_occurrence'"
-          )
-            div.d-flex.justify-content-center
-              div {{ draw.star_occurrence[star] }}
-              div.align-middle.ml-1
-                span.dot(:class="backgroundColorGradientOccurrence(draw.star_occurrence[star], draw.expected_star_occurrence)")
+            td.text-center(
+              v-for="star in draw.stars"
+              :key="'star' + draw.date + star + 'star_occurrence'"
+            )
+              div.d-flex.justify-content-center
+                div {{ draw.star_occurrence[star] }}
+                div.align-middle.ml-1
+                  span.dot(:class="backgroundColorGradientOccurrence(draw.star_occurrence[star], draw.expected_star_occurrence)")
 
-        tr
-          th
-            span Last drawn
-            span.ml-1.text-xsmall(:id="'last-draws-tooltip-' + index") ⓘ
-            <b-tooltip :target="'last-draws-tooltip-' + index" triggers="hover">
-              .text-justify.text-small
-                p The number of draw since the ball or star was last drawn.
-                p
-                  | On average, balls should be drawn every {{ drawsMetadata.expected_ball_draw_gap }} draws
-                  | and stars should be drawn every {{ drawsMetadata.expected_star_draw_gap }} draws.
-            </b-tooltip>
-          td(
-            v-for="ball in draw.balls"
-            :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'"
-          )
-            div.d-flex.justify-content-center
-              div {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
-              div.align-middle.ml-1
-                span.dot(:class="backgroundColorGradientDrawGap(draw.ball_nb_draws_since_last_pick[ball], drawsMetadata.expected_ball_draw_gap)")
+          tr
+            th
+              span Last drawn
+              span.ml-1.text-xsmall(:id="'last-draws-tooltip-' + index") ⓘ
+              <b-tooltip :target="'last-draws-tooltip-' + index" triggers="hover">
+                .text-justify.text-small
+                  p The number of draw since the ball or star was last drawn.
+                  p
+                    | On average, balls should be drawn every {{ drawsMetadata.expected_ball_draw_gap }} draws
+                    | and stars should be drawn every {{ drawsMetadata.expected_star_draw_gap }} draws.
+              </b-tooltip>
+            td(
+              v-for="ball in draw.balls"
+              :key="'ball' + draw.date + ball + 'ball_nb_draws_since_last_pick'"
+            )
+              div.d-flex.justify-content-center
+                div {{ drawAgoText(draw.ball_nb_draws_since_last_pick[ball]) }}
+                div.align-middle.ml-1
+                  span.dot(:class="backgroundColorGradientDrawGap(draw.ball_nb_draws_since_last_pick[ball], drawsMetadata.expected_ball_draw_gap)")
 
-          td(
-            v-for="star in draw.stars"
-            :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'"
-          )
-            div.d-flex.justify-content-center
-              div {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
-              div.align-middle.ml-1
-                span.dot(:class="backgroundColorGradientDrawGap(draw.star_nb_draws_since_last_pick[star], drawsMetadata.expected_star_draw_gap)")
+            td(
+              v-for="star in draw.stars"
+              :key="'star' + draw.date + star + 'star_nb_draws_since_last_pick'"
+            )
+              div.d-flex.justify-content-center
+                div {{ drawAgoText(draw.star_nb_draws_since_last_pick[star]) }}
+                div.align-middle.ml-1
+                  span.dot(:class="backgroundColorGradientDrawGap(draw.star_nb_draws_since_last_pick[star], drawsMetadata.expected_star_draw_gap)")
 
-        tr
-          th
-            div
-              | Frequency
-              span.ml-1.text-xsmall(:id="'frequency-tooltip-' + index") ⓘ
-            div.text-xsmall.text-secondary (in last 100 draws)
-            <b-tooltip :target="'frequency-tooltip-' + index" triggers="hover">
-              .text-justify.text-small
-                p Heatmap of the last 100 draws where filled dots represent a draw when the ball or star was drawn.
-                p
-                  | The draws are ordered from left to right and from top to bottom, each line representing 10 draws.
-            </b-tooltip>
-          td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
-            DrawHeatmap(:heatmapData="balls[ball].last_100_heat_map" :isStar="false")
+          tr
+            th
+              div
+                | Frequency
+                span.ml-1.text-xsmall(:id="'frequency-tooltip-' + index") ⓘ
+              div.text-xsmall.text-secondary (in last 100 draws)
+              <b-tooltip :target="'frequency-tooltip-' + index" triggers="hover">
+                .text-justify.text-small
+                  p Heatmap of the last 100 draws where filled dots represent a draw when the ball or star was drawn.
+                  p
+                    | The draws are ordered from left to right and from top to bottom, each line representing 10 draws.
+              </b-tooltip>
+            td.text-center(v-for="ball in draw.balls" :key="'ball' + draw.date + ball + 'ball_heat_map'")
+              DrawHeatmap(:heatmapData="balls[ball].last_100_heat_map" :isStar="false")
 
-          th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_heat_map'")
-            DrawHeatmap(:heatmapData="stars[star].last_100_heat_map" :isStar="true")
-  div.p-2
-    div(v-if="isCollapseOpen")
-      chevronDown
-    div(v-else)
-      chevronUp
+            th.text-center(v-for="star in draw.stars" :key="'star' + draw.date + star + 'star_heat_map'")
+              DrawHeatmap(:heatmapData="stars[star].last_100_heat_map" :isStar="true")
+
+    div.draw-xs.text-small.p-2.w-100
+      div.d-flex
+        div
+          div(v-if="index === 0") Last draw
+          div(v-else) {{ index + 1 }} draws ago
+          div.text-xsmall.text-secondary {{ formattedDate(draw.date) }}
+        div(v-for="ball in draw.balls" :key="'ball' + draw.date + ball")
+          Ball(:num="ball")
+        div(v-for="star in draw.stars" :key="'star' + draw.date + star")
+          Star(:num="star")
+    div.p-2
+      div(v-if="isCollapseOpen")
+        chevronDown
+      div(v-else)
+        chevronUp
 
 </template>
 
@@ -155,6 +167,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
 table {
   margin-bottom: 0;
 }
@@ -188,4 +204,21 @@ table td, table th {
   height: 9px;
   border-radius: 50%;
 }
+@include media-breakpoint-up(lg) {
+  .draw-xs {
+    display: None;
+  }
+  .draw-lg {
+    display: block;
+  }
+}
+@include media-breakpoint-down(lg) {
+  .draw-xs {
+    display: block;
+  }
+  .draw-lg {
+    display: None;
+  }
+}
+
 </style>
