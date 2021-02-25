@@ -102,7 +102,8 @@
           Ball(:num="ball")
         div(v-for="star in draw.stars" :key="'star' + draw.date + star")
           Star(:num="star")
-    div.p-2
+
+    div.p-3.draw-lg
       div(v-if="isCollapseOpen")
         chevronDown
       div(v-else)
@@ -204,19 +205,13 @@ table td, table th {
   height: 9px;
   border-radius: 50%;
 }
-@include media-breakpoint-up(lg) {
-  .draw-xs {
+.draw-lg {
+  @include media-breakpoint-down(md) {
     display: None;
   }
-  .draw-lg {
-    display: block;
-  }
 }
-@include media-breakpoint-down(lg) {
-  .draw-xs {
-    display: block;
-  }
-  .draw-lg {
+.draw-xs {
+  @include media-breakpoint-up(lg) {
     display: None;
   }
 }
