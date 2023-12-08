@@ -1,6 +1,20 @@
-# alphamillions
+# Alphamillions
 
-## Project setup
+Website displaying the results of Euromillion lottery draws and the statistics of each number.
+
+The aim of this website was to use the framework `Vue.js` along with several other frontend technologies.
+
+## Screenshots
+Draws
+![Draws](screenshots/alphamillion_draws.png)
+
+Balls
+![Balls](screenshots/alphamillion_balls.png)
+
+Stars
+![Stars](screenshots/alphamillion_stars.png)
+
+## Usage
 
 ```bash
 npm install
@@ -11,19 +25,3 @@ npm install
 ```bash
 npm run serve
 ```
-
-### Compiles and minifies for production
-
-```bash
-npm run build
-```
-
-### Lints and fixes files
-
-```bash
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/)
